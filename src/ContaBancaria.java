@@ -24,7 +24,8 @@ public class ContaBancaria {
         this.saldo = saldo;
     }
 
-    private String getNomeDoTitular() {
+    private String getNomeDoTitular()
+    {
         return nomeDoTitular;
     }
 
