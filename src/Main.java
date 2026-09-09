@@ -24,6 +24,13 @@ public class Main {
         System.out.println(conta1);
         System.out.println(conta2);
 
+        ContaCorrente contaCorrente1 = new ContaCorrente("Pedro Muniz", 999, 7500, 350);
+
+        System.out.println("O Saldo da Conta Corrente e De: " + contaCorrente1.getSaldo());
+        contaCorrente1.cobrarTaxa();
+        System.out.println("O Saldo da Conta Corrente Apos a Taxa de Manutencao!: " +contaCorrente1.getSaldo());
+
+
     }
 
 }
