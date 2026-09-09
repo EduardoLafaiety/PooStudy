@@ -5,11 +5,20 @@ public class ContaCorrente extends ContaBancaria {
         super(nomeDoTitular, numeroDaConta, saldo);
         this.taxaManutencao = taxaManutencao;
     }
+
     public void cobrarTaxa() {
         if (getSaldo() >= taxaManutencao) {
 
             saldo -= taxaManutencao;
 
         }
+
+    }
+
+    @Override
+    public void exibirDados() {
+        super.exibirDados();
+        System.out.println("Taxa de Manutencao: " +taxaManutencao);
     }
 }
+

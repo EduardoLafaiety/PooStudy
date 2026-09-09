@@ -4,16 +4,13 @@ public class Main {
 
         ContaBancaria conta1 = new ContaBancaria("Eduardo", 123, 1000);
 
-
         conta1.receber(500);
         System.out.println("Saldo Conta 1: " + conta1.getSaldo());
-
 
         ContaBancaria conta2 = new ContaBancaria("Agatha Lafaiety", 321, 2500);
 
         conta2.receber(300);
         System.out.println("Saldo Conta 2: " + conta2.getSaldo());
-
 
         conta1.transferencia(5000, conta2);
         System.out.println("Saldo Conta 2: " + conta2.getSaldo());
@@ -28,9 +25,20 @@ public class Main {
 
         System.out.println("O Saldo da Conta Corrente e De: " + contaCorrente1.getSaldo());
         contaCorrente1.cobrarTaxa();
-        System.out.println("O Saldo da Conta Corrente Apos a Taxa de Manutencao!: " +contaCorrente1.getSaldo());
+        System.out.println("O Saldo da Conta Corrente Apos a Taxa de Manutencao!: " + contaCorrente1.getSaldo());
 
+        conta1.exibirDados();
 
+        contaCorrente1.exibirDados();
+
+        ContaBancaria contaPolimorfica = new ContaCorrente("Carlos", 555, 3000, 100);
+
+        contaPolimorfica.exibirDados();
+
+        ContaCorrente contaCorrenteConvertida =
+                (ContaCorrente) contaPolimorfica;
+
+        contaCorrenteConvertida.cobrarTaxa();
     }
 
 }

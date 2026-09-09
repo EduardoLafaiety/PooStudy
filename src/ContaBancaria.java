@@ -24,8 +24,7 @@ public class ContaBancaria {
         this.saldo = saldo;
     }
 
-    private String getNomeDoTitular()
-    {
+    private String getNomeDoTitular() {
         return nomeDoTitular;
     }
 
@@ -42,23 +41,28 @@ public class ContaBancaria {
     }
 
     void transferencia(double valorTransferido, ContaBancaria contaDestino) {
-        if (valorTransferido > saldo){
+        if (valorTransferido > saldo) {
             System.out.println("Saldo Insuficiente!");
-        }else{
+        } else {
             saldo -= valorTransferido;
             contaDestino.receber(valorTransferido);
         }
 
     }
 
+    void exibirDados(){
+        System.out.println("Nome do Titular da Conta Corrente: " + nomeDoTitular);
+        System.out.println("Numero da Conta Corrente do Titular: " + numeroDaConta);
+        System.out.println("Saldo da Conta Corrente: " + saldo);
+    }
+
     @Override
     public String toString() {
         return "ContaBancaria [" +
                 "Titular: '" + nomeDoTitular + '\'' +
-                ", Número: " + numeroDaConta +
+                ", Numero: " + numeroDaConta +
                 ", Saldo: R$ " + saldo +
                 ']';
     }
 
 }
-
