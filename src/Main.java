@@ -2,12 +2,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ContaBancaria conta1 = new ContaBancaria("Eduardo", 123, 1000);
+        ContaBancaria conta1 = new ContaCorrente("Eduardo", 123, 1000, 50);
 
         conta1.receber(500);
         System.out.println("Saldo Conta 1: " + conta1.getSaldo());
 
-        ContaBancaria conta2 = new ContaBancaria("Agatha Lafaiety", 321, 2500);
+        ContaBancaria conta2 = new ContaCorrente("Agatha Lafaiety", 321, 2500, 80);
 
         conta2.receber(300);
         System.out.println("Saldo Conta 2: " + conta2.getSaldo());
@@ -39,6 +39,8 @@ public class Main {
                 (ContaCorrente) contaPolimorfica;
 
         contaCorrenteConvertida.cobrarTaxa();
+
+        System.out.println(contaCorrente1.calcularTarifa());
     }
 
 }

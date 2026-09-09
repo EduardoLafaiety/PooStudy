@@ -1,4 +1,4 @@
-public class ContaBancaria {
+public abstract class ContaBancaria  {
 
     private String nomeDoTitular;
     private int numeroDaConta;
@@ -63,6 +63,12 @@ public class ContaBancaria {
                 ", Numero: " + numeroDaConta +
                 ", Saldo: R$ " + saldo +
                 ']';
+    }
+
+    public abstract double calcularTarifa();{
+
+
+
     }
 
 }
