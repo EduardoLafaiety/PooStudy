@@ -1,114 +1,182 @@
 public class Main {
 
-    // Metodo Principal Onde A Execucao Do Programa Comeca
     public static void main(String[] args) {
 
-        // Polimorfismo: A Variavel E Do Tipo ContaBancaria
-        // Mas O Objeto Real Criado E Uma ContaCorrente
-        ContaBancaria conta1 = new ContaCorrente("Eduardo", 123, 1000, 50);
+        // Criamos Primeiro Os Clientes
+        Cliente Eduardo = new Cliente(
+                "Eduardo",
+                "111.111.111-11"
+        );
 
-        // Chama Um Comportamento Herdado Da ContaBancaria
-        conta1.receber(500);
+        Cliente Agatha = new Cliente(
+                "Agatha Lafaiety",
+                "222.222.222-22"
+        );
 
-        // Consulta O Saldo Atual Do Objeto
-        System.out.println("Saldo Conta 1: " + conta1.getSaldo());
+        Cliente Pedro = new Cliente(
+                "Pedro Muniz",
+                "333.333.333-33"
+        );
 
+        Cliente Carlos = new Cliente(
+                "Carlos",
+                "444.444.444-44"
+        );
 
-        // Outro Exemplo De Polimorfismo
-        // A Referencia E ContaBancaria Mas O Objeto Real E ContaCorrente
-        ContaBancaria conta2 = new ContaCorrente("Agatha Lafaiety", 321, 2500, 80);
-
-        // Adiciona Dinheiro Ao Saldo Da Conta Dois
-        conta2.receber(300);
-
-        // Exibe O Saldo Atual Da Conta Dois
-        System.out.println("Saldo Conta 2: " + conta2.getSaldo());
-
-
-        // A Conta Um Tenta Transferir Dinheiro Para A Conta Dois
-        // O Segundo Parametro E Outro Objeto Do Tipo ContaBancaria
-        conta1.transferencia(5000, conta2);
-
-        // Mostra O Saldo Da Conta Dois Depois Da Tentativa De Transferencia
-        System.out.println("Saldo Conta 2: " + conta2.getSaldo());
+        Cliente NiKalus = new Cliente(
+                "Nikalus Maikonson",
+                "555.555.555-55"
+        );
 
 
-        // Agora A Conta Dois Transfere Dinheiro Para A Conta Um
-        conta2.transferencia(200, conta1);
+        // A Conta Agora Recebe Um Objeto Cliente
+        ContaBancaria Conta1 =
+                new ContaCorrente(
+                        Eduardo,
+                        123,
+                        1000,
+                        50
+                );
 
-        // Exibe O Novo Saldo Da Conta Um
-        System.out.println("Saldo Conta 1: " + conta1.getSaldo());
+        Conta1.receber(500);
 
-
-        // Chama Automaticamente O Metodo ToString Do Objeto Conta Um
-        System.out.println(conta1);
-
-        // Chama Automaticamente O Metodo ToString Do Objeto Conta Dois
-        System.out.println(conta2);
-
-
-        // Aqui A Variavel E O Objeto Sao Do Tipo ContaCorrente
-        ContaCorrente contaCorrente1 =
-                new ContaCorrente("Pedro Muniz", 999, 7500, 350);
-
-        // Consulta O Saldo Antes Da Cobranca Da Taxa
         System.out.println(
-                "O Saldo da Conta Corrente e De: "
+                "Saldo Conta 1: "
+                        + Conta1.getSaldo()
+        );
+
+
+        // Outra Conta Recebe Outro Objeto Cliente
+        ContaBancaria Conta2 =
+                new ContaCorrente(
+                        Agatha,
+                        321,
+                        2500,
+                        80
+                );
+
+        Conta2.receber(300);
+
+        System.out.println(
+                "Saldo Conta 2: "
+                        + Conta2.getSaldo()
+        );
+
+
+        // Transferencia Entre Dois Objetos ContaBancaria
+        Conta1.transferencia(5000, Conta2);
+
+        System.out.println(
+                "Saldo Conta 2: "
+                        + Conta2.getSaldo()
+        );
+
+
+        Conta2.transferencia(200, Conta1);
+
+        System.out.println(
+                "Saldo Conta 1: "
+                        + Conta1.getSaldo()
+        );
+
+
+        // ToString Das Contas
+        System.out.println(Carlos);
+        System.out.println(Conta2);
+
+
+        // Aqui Variavel E Objeto Sao ContaCorrente
+        ContaCorrente contaCorrente1 =
+                new ContaCorrente(
+                        Pedro,
+                        999,
+                        7500,
+                        350
+                );
+
+        System.out.println(
+                "O Saldo Da Conta Corrente E De: "
                         + contaCorrente1.getSaldo()
         );
 
-        // Chama Um Metodo Que Existe Especificamente Em ContaCorrente
         contaCorrente1.cobrarTaxa();
 
-        // Consulta O Saldo Depois Da Cobranca Da Taxa
         System.out.println(
-                "O Saldo da Conta Corrente Apos a Taxa de Manutencao!: "
+                "O Saldo Da Conta Corrente Apos A Taxa De Manutencao E: "
                         + contaCorrente1.getSaldo()
         );
 
 
-        // Chama O Metodo ExibirDados
-        // Como Conta Um E Realmente Uma ContaCorrente
-        // Sera Executada A Versao Sobrescrita Da ContaCorrente
-        conta1.exibirDados();
+        // Polimorfismo
+        Conta1.exibirDados();
 
-
-        // Chama Diretamente A Versao Sobrescrita Em ContaCorrente
         contaCorrente1.exibirDados();
 
 
-        // Outro Exemplo De Polimorfismo
-        // O Tipo Da Variavel E ContaBancaria
-        // O Objeto Real E ContaCorrente
+        // Tipo Da Variavel ContaBancaria
+        // Objeto Real ContaCorrente
         ContaBancaria contaPolimorfica =
-                new ContaCorrente("Carlos", 555, 3000, 100);
+                new ContaCorrente(
+                        Carlos,
+                        555,
+                        3000,
+                        100
+                );
 
-        // O Metodo Existe Em ContaBancaria
-        // Mas A Versao Executada Sera A Da ContaCorrente
-        // Porque O Objeto Real E Uma ContaCorrente
         contaPolimorfica.exibirDados();
 
 
-        // Casting: A Referencia ContaBancaria Passa A Ser Tratada Como ContaCorrente
-        // Nenhum Novo Objeto E Criado Aqui
+        // Casting
         // As Duas Variaveis Apontam Para O Mesmo Objeto
         ContaCorrente contaCorrenteConvertida =
                 (ContaCorrente) contaPolimorfica;
 
-        // Agora Podemos Acessar Um Metodo Especifico De ContaCorrente
         contaCorrenteConvertida.cobrarTaxa();
 
 
-        // Chama O Metodo Que Calcula A Tarifa
-        // O Metodo Retorna Um Double
-        System.out.println(contaCorrente1.calcularTarifa());
-
-        Tributavel item = new ContaCorrente("Nikalus Maikonson" , 666, 20000, 500);
-
-        System.out.println(item.calcularImposto());
-        System.out.println("O Imposto Calculado E De: " + item.calcularImposto());
+        // Calcula A Tarifa
+        System.out.println(
+                contaCorrente1.calcularTarifa()
+        );
 
 
+        // Polimorfismo Pela Interface
+        Tributavel item =
+                new ContaCorrente(
+                        NiKalus,
+                        666,
+                        20000,
+                        500
+                );
 
+        System.out.println(
+                item.calcularImposto()
+        );
+
+        System.out.println(
+                "O Imposto Calculado E De: "
+                        + item.calcularImposto()
+        );
+
+
+        // Criamos Um Cliente Para A Conta Poupanca
+        Cliente clientePoupanca =
+                new Cliente(
+                        "Eduardo Lopes",
+                        "666.666.666-66"
+                );
+
+        // Polimorfismo
+        // Tipo Da Variavel ContaBancaria
+        // Objeto Real ContaPoupanca
+        ContaBancaria poupanca =
+                new ContaPoupanca(
+                        clientePoupanca,
+                        255,
+                        30000,
+                        300
+                );
+
+        poupanca.exibirDados();
     }
 }

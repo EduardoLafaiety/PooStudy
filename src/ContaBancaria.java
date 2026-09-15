@@ -1,9 +1,9 @@
 // Abstract Indica Que Esta Classe Serve Como Base Para Outras Classes
 // Ela Nao Pode Ser Instanciada Diretamente Com New ContaBancaria
-public abstract class ContaBancaria implements Tributavel {
+public abstract class ContaBancaria {
 
-    // Private Protege O Atributo Contra Acesso Direto Fora Desta Classe
-    private String nomeDoTitular;
+    // Agora A Conta Guarda Um Objeto Cliente Inteiro
+    private Cliente titularDaConta;
 
     // Private Protege O Numero Da Conta
     private int numeroDaConta;
@@ -12,16 +12,15 @@ public abstract class ContaBancaria implements Tributavel {
     protected double saldo;
 
 
-    // Construtor Responsavel Por Inicializar A Parte ContaBancaria Do Objeto
+    // O Construtor Agora Recebe Um Cliente Inteiro
     public ContaBancaria(
-            String nomeDoTitular,
+            Cliente titularDaConta,
             int numeroDaConta,
             double saldo
     ) {
 
-        // This NomeDoTitular Representa O Atributo Deste Objeto
-        // NomeDoTitular Representa O Parametro Recebido Pelo Construtor
-        this.nomeDoTitular = nomeDoTitular;
+        // Guarda O Objeto Cliente Dentro Da Conta
+        this.titularDaConta = titularDaConta;
 
         // Guarda O Numero Recebido No Atributo Do Objeto
         this.numeroDaConta = numeroDaConta;
@@ -31,52 +30,28 @@ public abstract class ContaBancaria implements Tributavel {
     }
 
 
-    // Metodo Que Modifica O Estado Do Objeto Aumentando Seu Saldo
+    // Metodo Que Modifica O Estado Do Objeto Aumentando O Seu Saldo
     void receber(double valorRecebido) {
 
-        // Soma O Valor Recebido Ao Saldo Atual
         saldo += valorRecebido;
     }
 
 
-    // Getter Permite Consultar O Saldo Sem Permitir Alteracao Direta
+    // Getter Permite Consultar O Saldo
     public double getSaldo() {
         return saldo;
     }
 
 
-    // Setter Privado So Pode Ser Utilizado Dentro Da Propria ContaBancaria
-    // Atualmente Este Metodo Nao Esta Sendo Utilizado
-    private void setSaldo(double saldo) {
-        this.saldo = saldo;
+    // Getter Permite Consultar O Cliente Titular Da Conta
+    public Cliente getTitularDaConta() {
+        return titularDaConta;
     }
 
 
-    // Getter Privado So Pode Ser Utilizado Dentro Desta Classe
-    // Atualmente Este Metodo Nao Esta Sendo Utilizado
-    private String getNomeDoTitular() {
-        return nomeDoTitular;
-    }
-
-
-    // Setter Privado So Pode Ser Utilizado Dentro Desta Classe
-    // Atualmente Este Metodo Nao Esta Sendo Utilizado
-    private void setNomeDoTitular(String nomeDoTitular) {
-        this.nomeDoTitular = nomeDoTitular;
-    }
-
-
-    // Getter Privado So Pode Ser Utilizado Dentro Desta Classe
-    // Atualmente Este Metodo Nao Esta Sendo Utilizado
-    private int getNumeroDaConta() {
+    // Getter Permite Consultar O Numero Da Conta
+    public int getNumeroDaConta() {
         return numeroDaConta;
-    }
-
-
-    // Setter Privado So Pode Ser Utilizado Dentro Desta Classe
-    // Atualmente Este Metodo Nao Esta Sendo Utilizado
-    private void setNumeroDaConta(int numeroDaConta) {
-        this.numeroDaConta = numeroDaConta;
     }
 
 
@@ -86,58 +61,56 @@ public abstract class ContaBancaria implements Tributavel {
             ContaBancaria contaDestino
     ) {
 
-        // Verifica Se A Conta Possui Saldo Suficiente
         if (valorTransferido > saldo) {
 
             System.out.println("Saldo Insuficiente!");
 
         } else {
 
-            // Retira O Dinheiro Da Conta Atual
             saldo -= valorTransferido;
 
-            // Envia O Mesmo Valor Para O Outro Objeto
             contaDestino.receber(valorTransferido);
         }
     }
 
 
-    // Metodo Que Exibe O Estado Atual Do Proprio Objeto
-    // Nao Precisa Receber Parametros Pois O Objeto Ja Possui Esses Dados
+    // Exibe Os Dados Da Conta E Tambem Os Dados Do Cliente
     void exibirDados() {
 
         System.out.println(
-                "Nome do Titular da Conta Corrente: "
-                        + nomeDoTitular
+                "Nome Do Titular: "
+                        + titularDaConta.getNome()
         );
 
         System.out.println(
-                "Numero da Conta Corrente do Titular: "
+                "CPF Do Titular: "
+                        + titularDaConta.getCpf()
+        );
+
+        System.out.println(
+                "Numero Da Conta: "
                         + numeroDaConta
         );
 
         System.out.println(
-                "Saldo da Conta Corrente: "
+                "Saldo Da Conta: "
                         + saldo
         );
     }
 
 
-    // Override Indica Que Estamos Sobrescrevendo Um Metodo Herdado De Object
     @Override
     public String toString() {
 
-        // Retorna Uma Representacao Em Texto Deste Objeto
         return "ContaBancaria [" +
-                "Titular: '" + nomeDoTitular + '\'' +
+                "Titular: " + titularDaConta.getNome() +
+                ", CPF: " + titularDaConta.getCpf() +
                 ", Numero: " + numeroDaConta +
                 ", Saldo: R$ " + saldo +
                 ']';
     }
 
 
-    // Metodo Abstrato Define Uma Obrigacao Para As Classes Filhas Concretas
-    // ContaBancaria Diz Que Toda Conta Deve Saber Calcular Sua Tarifa
-    // Mas Nao Define Aqui Como Esse Calculo Deve Ser Feito
+    // Cada Tipo Concreto De Conta Deve Implementar a Sua Propria Tarifa
     public abstract double calcularTarifa();
 }
