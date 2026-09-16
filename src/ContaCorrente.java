@@ -39,7 +39,7 @@ public class ContaCorrente extends ContaBancaria implements Tributavel {
         // Chama Primeiro A Versao Da Classe Mae
         super.exibirDados();
 
-        // Depois Adiciona O Dado Especifico Da ContaCorrente
+        // Depois Adiciona O Dado Específico Da ContaCorrente
         System.out.println(
                 "Taxa De Manutencao: "
                         + taxaManutencao

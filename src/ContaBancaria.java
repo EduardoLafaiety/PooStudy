@@ -5,7 +5,7 @@ public abstract class ContaBancaria {
     // Agora A Conta Guarda Um Objeto Cliente Inteiro
     private Cliente titularDaConta;
 
-    // Private Protege O Numero Da Conta
+    // Private Protege O Número Da Conta
     private int numeroDaConta;
 
     // Protected Permite Que Classes Filhas Como ContaCorrente Acessem O Saldo
@@ -22,7 +22,7 @@ public abstract class ContaBancaria {
         // Guarda O Objeto Cliente Dentro Da Conta
         this.titularDaConta = titularDaConta;
 
-        // Guarda O Numero Recebido No Atributo Do Objeto
+        // Guarda O Número Recebido No Atributo Do Objeto
         this.numeroDaConta = numeroDaConta;
 
         // Guarda O Saldo Recebido No Atributo Do Objeto

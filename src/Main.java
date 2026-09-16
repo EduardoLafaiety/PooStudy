@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -26,6 +29,12 @@ public class Main {
         Cliente NiKalus = new Cliente(
                 "Nikalus Maikonson",
                 "555.555.555-55"
+        );
+
+        Cliente Eliane = new Cliente(
+
+                "Eliane Ximenes",
+                "01010127055"
         );
 
 
@@ -85,7 +94,7 @@ public class Main {
         System.out.println(Conta2);
 
 
-        // Aqui Variavel E Objeto Sao ContaCorrente
+        // Aqui Variavel E Objeto São ContaCorrente
         ContaCorrente contaCorrente1 =
                 new ContaCorrente(
                         Pedro,
@@ -178,5 +187,22 @@ public class Main {
                 );
 
         poupanca.exibirDados();
+
+        List <ContaBancaria> ListaDeContas = new ArrayList<>();
+        ListaDeContas.add(Conta1);
+        ListaDeContas.add(Conta2);
+        ListaDeContas.add(poupanca);
+
+
+        for (int i = 0; i < ListaDeContas.size(); i++) {
+
+            System.out.println(ListaDeContas.get(i));
+        }
+
+        for (ContaBancaria Conta : ListaDeContas){
+            Conta.exibirDados();
+        }
+
+
     }
 }
