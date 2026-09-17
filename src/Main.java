@@ -194,14 +194,16 @@ public class Main {
         ListaDeContas.add(poupanca);
 
 
-        for (int i = 0; i < ListaDeContas.size(); i++) {
+        int numeroBuscado = 321;
 
-            System.out.println(ListaDeContas.get(i));
+        for (ContaBancaria conta : ListaDeContas) {
+
+            if (conta.getNumeroDaConta() == numeroBuscado) {
+                conta.exibirDados();
+            }
         }
 
-        for (ContaBancaria Conta : ListaDeContas){
-            Conta.exibirDados();
-        }
+
 
 
     }
