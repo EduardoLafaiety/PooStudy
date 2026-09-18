@@ -193,17 +193,92 @@ public class Main {
         ListaDeContas.add(Conta2);
         ListaDeContas.add(poupanca);
 
-
         int numeroBuscado = 321;
+        boolean encontrou = false;
 
-        for (ContaBancaria conta : ListaDeContas) {
+        for (ContaBancaria Conta : ListaDeContas) {
 
-            if (conta.getNumeroDaConta() == numeroBuscado) {
-                conta.exibirDados();
+            if (Conta.getNumeroDaConta() == numeroBuscado) {
+
+                encontrou = true;
+
+                System.out.println(Conta);
+
+                break;
             }
         }
 
+        if (!encontrou) {
 
+            System.out.println("Conta Nao Encontrada");
+        }
+
+        int numeroParaRemover = 321;
+
+        ContaBancaria contaParaRemover = null;
+
+        for (ContaBancaria Conta : ListaDeContas) {
+
+            if (Conta.getNumeroDaConta() == numeroParaRemover) {
+
+                contaParaRemover = Conta;
+
+                break;
+            }
+        }
+
+        if (contaParaRemover != null) {
+
+            ListaDeContas.remove(contaParaRemover);
+
+            System.out.println("Conta Removida Com Sucesso!");
+
+        } else {
+
+            System.out.println("Conta Nao Encontrada");
+        }
+
+        int numeroParaReceber = 321;
+
+        ContaBancaria contaParaReceber = null;
+
+        for (ContaBancaria conta : ListaDeContas) {
+
+            if (conta.getNumeroDaConta() == numeroParaReceber) {
+
+                contaParaReceber = conta;
+
+                break;
+            }
+        }
+
+        if (contaParaReceber != null) {
+
+            contaParaReceber.receber(500);
+
+            System.out.println("Valor Recebido Com Sucesso!");
+
+            System.out.println(
+                    "Novo Saldo: "
+                            + contaParaReceber.getSaldo()
+            );
+
+        } else {
+
+            System.out.println("Conta Nao Encontrada");
+        }
+
+        Banco GerenciadorDeContas = new Banco();
+
+
+        GerenciadorDeContas.cadastrarConta(Conta1);
+        System.out.println("Conta1 Cadastrada");
+        GerenciadorDeContas.cadastrarConta(Conta2);
+        System.out.println("Conta2 Cadastrada");
+        GerenciadorDeContas.cadastrarConta(poupanca);
+        System.out.println("Conta3 Cadastrada");
+
+        GerenciadorDeContas.listasContas();
 
 
     }
