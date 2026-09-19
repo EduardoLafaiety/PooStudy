@@ -28,10 +28,17 @@ public class Banco {
 
     }
 
-    public void buscarContaPorNumero (){
+    public ContaBancaria buscarContaPorNumero(int numeroDaConta) {
 
+        for (ContaBancaria conta : Contas) {
 
+            if (conta.getNumeroDaConta() == numeroDaConta) {
 
+                return conta;
+            }
+        }
+
+        return null;
     }
 
 }
